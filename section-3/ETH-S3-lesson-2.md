@@ -232,7 +232,7 @@ Contract balance: 0.0999
 
 `Contract balance: 0.1` が、`Contract balance: 0.0999` に下がっていれば、成功です🎉
 
-🛫 `deploy.js` 更新する
+🛫 `deploy.js` を更新する
 ----------------------------------------
 
 本番環境でコントラクトに資金を提供するため、下記のように `deploy.js` を更新します。
