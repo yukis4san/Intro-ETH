@@ -50,6 +50,8 @@ contract WavePortal {
 ```
 これは「SPDXライセンス識別子」と呼ばれ、ソフトウェア・ライセンスの種類が一目でわかるようにするための識別子です。
 
+詳細については、[ここ](https://www.skyarch.net/blog/?p=15940)を参照してみてください。
+
 ```solidity
 // WavePortal.sol
 pragma solidity ^0.8.0;
@@ -73,7 +75,11 @@ contract WavePortal {
     }
 }
 ```
-`contract` は、他の言語でいうところの「[クラス](https://wa3.i-3-i.info/word1120.html)」のようなものなのです。この `contract` を初めて初期化すると、`contructor` が実行されて `console.log` の中身がターミナル上に表示されます。
+`contract` は、他の言語でいうところの「[class](https://wa3.i-3-i.info/word1120.html)」のようなものなのです。
+
+この `contract` を初期化すると、`contructor` が実行されて `console.log` の中身がターミナル上に表示されます。
+
+class の概念については、[ここ](https://aiacademy.jp/media/?p=131)を参照してみてください。
 
 🔩 `contructor`とは
 -------------------------------------------
@@ -83,7 +89,7 @@ contract WavePortal {
 
 - `contructor` は、スマートコントラクトの作成時に一度だけ実行され、`contract` の状態を初期化するために使用されます。
 
-- `contructor` が実行された後、最終的なコードがブロックチェーンにデプロイされます。
+- `contructor` が実行された後、コードがブロックチェーンにデプロイされます。
 
 🙋‍♂️ 質問する
 -------------------------------------------

@@ -18,14 +18,14 @@
 ✨ Hardhat をインストールする
 ----------------------
 
-スマートコントラクトを素早くコンパイルし、ローカル環境にてテストを行うために、**Hardhat**というツールを使用します。
+スマートコントラクトを素早くコンパイルし、ローカル環境にてテストを行うために、**Hardhat** というツールを使用します。
 
 - Hardhat により、ローカル環境でイーサリアムネットワークを簡単に起動し、テストネットでイーサリアムを利用できるようになります。
 
 - 「サーバー」がブロックチェーンであることを除けば、Hardhat はローカルサーバーと同じです。
 
 
-まず、`node`/`npm` を取得する必要があります。お持ちでない場合は、[こちら](https://hardhat.org/tutorial/setting-up-the-environment.html)にアクセスしてください。
+まず、`node` / `npm` を取得する必要があります。お持ちでない場合は、[こちら](https://hardhat.org/tutorial/setting-up-the-environment.html)にアクセスしてください。
 `node v16` をインストールすることを推奨しています。
 
 次に、ターミナルに向かいましょう。
@@ -42,21 +42,21 @@ npm install --save-dev hardhat
 
 次に、Hardhat を実行します。
 
-ターミナルで下記を実行します：
+ターミナルで `my-wave-portal` に移動し、下記を実行します：
 
 ```bash
 npx hardhat
 ```
 
-注：`npm`と一緒に`yarn`をインストールしている場合、`npm ERR! could not determine executable to run`などのエラーが発生する可能性があります。
+注：`npm` と一緒に `yarn` をインストールしている場合、`npm ERR! could not determine executable to run` などのエラーが発生する可能性があります。
 - この場合、`yarn add hardhat` のコマンドを実行しましょう。
 
-`hardhat`がターミナル上で立ち上がったら、`Create a sample project`を選択します。
-- ここでは、すべてに`yes`と言ってください。
+`hardhat` がターミナル上で立ち上がったら、`Create a sample project` を選択します。
+- ここでは、すべてに `yes` と言ってください。
 
 サンプルプロジェクトでは、`hardhat-waffle` と `hardhat-ethers` をインストールするように求められます。
 
-自動的に実行されなかった場合、以下をターミナルで実行してください。
+`npx hardhat` が実行されなかった場合、以下をターミナルで実行してください。
 
 ```bash
 npm install --save-dev @nomiclabs/hardhat-waffle ethereum-waffle chai @nomiclabs/hardhat-ethers ethers

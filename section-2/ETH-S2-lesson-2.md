@@ -5,7 +5,7 @@
 
 - `hardhat`をコマンドを使って実行したターミナルを閉じれば完了です。
 
-これから、実際のブロックチェーンにコントラクトをデプロイするための本番環境を構築していきますs。
+これから、実際のブロックチェーンにコントラクトをデプロイするための環境を構築していきます。
 
 💳 トランザクション
 ------------------
@@ -132,7 +132,7 @@ module.exports = {
 
 1. \. `YOUR_ALCHEMY_API_URL`の取得
 
-> `hardhat.config.js` の `YOUR_ALCHEMY_API_URL` の部分を先ほど取得したAlchemy の URL と入れ替えます。
+> `hardhat.config.js` の `YOUR_ALCHEMY_API_URL` の部分を先ほど取得した Alchemy の URL と入れ替えます。
 ![](https://i.imgur.com/KfQPZ3F.png)
 
 2. \. `YOUR_PRIVATE_RINKEBY_ACCOUNT_KEY` の取得
@@ -173,6 +173,27 @@ module.exports = {
 >
 > **絶対に秘密鍵を自分以外の人が見れる場所に置かないようにしましょう**。
 
+下記を実行して、VS Code で `.gitignore` ファイルを編集しましょう。
+```
+code .gitignore
+```
+`.gitignore` に `hardhat.config.js` の行を追加します。
+
+`.gitignore` の中身が下記のようになっていれば、問題ありません。
+```bash
+node_modules
+.env
+coverage
+coverage.json
+typechain
+
+#Hardhat files
+cache
+artifacts
+hardhat.config.js
+```
+
+`.gitignore` に記載されているファイルやディレクトリは、Github にディレクトリをプッシュされずに、ローカル環境にのみ保存されます。
 
 **✍️: スマートコントラクトをデプロイするのに秘密鍵が必要な理由**
 > **新らしくスマートコントラクトをイーサリアムネットワーク上にデプロイすること**も、トランザクションの一つです。
@@ -216,8 +237,6 @@ WavePortal address: 0x489BdD5f9ad2D061F0bC648fd0A06e4D024A9a81
 コピーした `WavePortal address` アドレスを、[Etherscan](https://rinkeby.etherscan.io/) に貼り付けて、あなたのスマートコントラクトのトランザクション履歴を見てみましょう。
 
 Etherscan は、イーサリアムネットワーク上のトランザクションに関する情報を確認するのに便利なプラットフォームです。
-
-あなたのコントラクトアドレスを入力すれば、「あなたのスマートコントラクトがデプロイされた」というトランザクション情報が表示されるはずです。
 
 *表示されるまでに約1分かかり場合があります。*
 
