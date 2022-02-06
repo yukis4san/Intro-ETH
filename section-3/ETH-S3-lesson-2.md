@@ -290,7 +290,7 @@ const waveContract = await waveContractFactory.deploy({
 
 2. フロントエンドの契約アドレスを更新する（更新するファイル: `App.js`）
 
-3. フロントエンドのABIファイルを更新する（更新するファイル: `your-first-dapps/src/utils/WavePortal.json`）
+3. フロントエンドのABIファイルを更新する（更新するファイル: `your-first-dApp/src/utils/WavePortal.json`）
 
 **コントラクトを更新するたび、これらの3つのステップを実行する必要があります。**
 
@@ -320,28 +320,28 @@ WavePortal address:  0x550925E923Cb1734de73B3a843A21b871fe2a673
 
 2 \. `App.js` の `contractAddress` を、ターミナルで取得した新しいコントラクトアドレスに変更します。
 
-ターミナルに出力されたコントラクトのアドレス( `WavePortal address` )の値 `0x..` をコピーしましょう。
-
-それから、そのアドレスを `App.js` の下記の部分に貼り付けましょう。
-
-```javascript
-// App.js
-const Address = "ここに新しいWavePortal addressを貼り付ける";
-```
+ターミナルに出力されたコントラクト（ `WavePortal address` ）のアドレス( `0x..` ）をコピーしましょう。
+- コピーしたアドレスを `App.js` の `const contractAddress = "こちら"` に貼り付けましょう。
 
 3 \. 以前と同じように `artifacts` からABIファイルを取得します。下記のステップを実行してください。
 
-1. `artifacts/contracts/WavePortal.sol/WavePortal.json` ファイルを開き、中身を全てコピーする。
 
-2. `your-first-dapps/src/utils/WavePortal.json` を開く。
+1. ターミナル上で `my-wave-portal` にいることを確認する（もしくは移動する）。
+2. ターミナル上で下記を実行する。
+> ```
+> code artifacts/contracts/WavePortal.sol/WavePortal.json
+> ```
+3. VS Codeで `WavePortal.json` ファイルが開かれるので、中身を全てコピーしましょう。
 
-3. ステップ1でコピーした `artifacts/contracts/WavePortal.sol/WavePortal.json` のABIファイルを `your-first-dapps/src/utils/WavePortal.json` に貼り付けてください。**※ 中身を全て入れ替えてください。**
+	※ VS Codeのファインダーを使って、直接 `WavePortal.json` を開くことも可能です。
+
+4. **コピーした `my-wave-portal/artifacts/contracts/WavePortal.sol/WavePortal.json` の中身を`your-first-dApp/src/utils/WavePortal.json` の中身と交換してください。**
 
 **繰り返しますが、コントラクトを更新するたびにこれを行う必要があります。**
 
 `wave` を送ったユーザーに 0.001ETH が送られているか確認してみましょう。
 
-1 \. ターミナル上で `your-first-dapps` に移動する
+1 \. ターミナル上で `your-first-dApp` に移動する
 
 2 \. 下記を実行する
 ```

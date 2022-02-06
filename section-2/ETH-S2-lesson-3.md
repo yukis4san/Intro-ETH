@@ -7,7 +7,7 @@ WEBアプリ上で、ユーザーがイーサリアムネットワークと通�
 
 - これは、WEBサイトへの認証機能です。
 
-ターミナル上で、`your-first-dapp/src`に移動し、その中にある `App.js` を VS Code で開きましょう。
+ターミナル上で、`your-first-dApp/src`に移動し、その中にある `App.js` を VS Code で開きましょう。
 
 下記のように、`App.js`の中身を更新します。
 - `App.js` はあなたのWEBアプリのフロントエンド機能を果たします。
@@ -57,7 +57,7 @@ export default App
 
 `window.ethereum` は、あなたのWEBサイトを訪問したユーザーが Metamask を持っているか確認し、結果を `Console log` に出力します。
 
-ターミナルで `your-first-dapp` に移動し、下記を実行してみましょう。
+ターミナルで `your-first-dApp` に移動し、下記を実行してみましょう。
 
 ```bash
 npm run start
@@ -135,6 +135,7 @@ export default App
 新しく追加したコードを見ていきます。
 
 ```javascript
+// App.js
 /* ユーザーのウォレットへのアクセスが許可されているかどうかを確認します */
 const accounts = await ethereum.request({ method: "eth_accounts" });
 if (accounts.length !== 0) {
@@ -149,7 +150,7 @@ if (accounts.length !== 0) {
 
 ユーザーのウォレットアカウントへのアクセスが許可されている場合は、 `Found an authorized account` と `Console` に出力されます。
 
-ターミナルで再度 `your-first-dapp` に移動し、下記を実行してみましょう。
+ターミナルで再度 `your-first-dApp` に移動し、下記を実行してみましょう。
 
 ```bash
 npm run start
@@ -168,10 +169,11 @@ npm run start
 > /*この段階でcurrentAccountの中身は空*/
 > console.log("currentAccount: ", currentAccount);
 > ```
-> アクセス可能なアカウントを検出した後、`currentAccount` に` 0x...` と値が入ります。
+> アクセス可能なアカウントを検出した後、`currentAccount` にユーザーのウォレットアカウント（`0x...`）の値が入ります。
 >
-> 以下で `currentAccount` を更新しています。
->```javascript
+
+以下で `currentAccount` を更新しています。
+> ```javascript
 > // App.js
 > // accountsにWEBサイトを訪れたユーザーのウォレットアカウントを格納する（複数持っている場合も加味、よって account's' と変数を定義している）
 > const accounts = await ethereum.request({ method: "eth_accounts" });
@@ -186,12 +188,12 @@ npm run start
 >	console.log("No authorized account found")
 >}
 > ```
-> この処理のおかげで、ユーザーがウォレットに複数のアカウントを持っている場合でも、プログラムはユーザーの1番目のアカウントアドレス取得することができます。
+> この処理のおかげで、ユーザーがウォレットに複数のアカウントを持っている場合でも、プログラムはユーザーの1番目のアカウントアドレスを取得することができます。
 
-💰ウォレット接続ボタンを作成する
+👛 ウォレット接続ボタンを作成する
 --------------------------------
 
-` connectWallet` ボタンを作成していきます。
+`connectWallet` ボタンを作成していきます。
 
 ```javascript
 // App.js
@@ -294,7 +296,7 @@ const connectWallet = async () => {
     }
   }
 ```
-`eth_requestAccounts`関数を使用することで、Metamaskからユーザーにウォレットへのアクセスを許可するよう呼びかけることができます。
+`eth_requestAccounts` 関数を使用することで、Metamask からユーザーにウォレットへのアクセスを許可するよう呼びかけることができます。
 
 **2 \. ウォレットコネクトのボタンを実装**
 ```javascript
@@ -312,11 +314,10 @@ const connectWallet = async () => {
 </button>
 )}
 ```
-
 🌐 ウォレットコネクトのテストを実行する
 --------------------------------
 
-上記のコードを全て `App.js` に反映させたら、ターミナルで `your-first-dapp` に移動し、下記を実行しましょう。
+上記のコードを全て `App.js` に反映させたら、ターミナルで `your-first-dApp` に移動し、下記を実行しましょう。
 
 ```bash
 npm run start
@@ -341,7 +342,7 @@ npm run start
 下図のように Metamask からウォレット接続を求められますので、承認してください。
 ![](https://i.imgur.com/IwyFnQj.png)
 
-Metamaskの承認が終わると、ウォレット接続ボタンの表示が `Wallet Connected` に変更されているはずです。 `Console` にも、接続されたウォレットアドレスが、`currentAccount` として出力されていることを確認してください。
+Metamask の承認が終わると、ウォレット接続ボタンの表示が `Wallet Connected` に変更されているはずです。 `Console` にも、接続されたウォレットアドレスが、`currentAccount` として出力されていることを確認してください。
 ![](https://i.imgur.com/zQsSsmT.png)
 
 🙋‍♂️ 質問する

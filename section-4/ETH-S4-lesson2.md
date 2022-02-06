@@ -114,9 +114,9 @@ Vercel はサーバレス機能のホスティングを提供するクラウド�
 
 Vercel に関しする詳しい説明は、[こちら](https://zenn.dev/lollipop_onl/articles/eoz-vercel-pricing-2020)をご覧ください。
 
-まず、Githubの`your-first-dapps` にローカルファイルをアップロードしていきます。
+まず、Github の `your-first-dApp` にローカルファイルをアップロードしていきます。
 
-ターミナル上で `your-first-dapps` に移動して、下記を実行しましょう。
+ターミナル上で `your-first-dApp` に移動して、下記を実行しましょう。
 
 ```
 git add .
@@ -124,14 +124,14 @@ git commit -m "upload to github"
 git push
 ```
 
-次に、Github上の `your-first-dapps` に ローカル環境に存在する`your-first-dapps` のファイルとディレクトリが反映されていることを確認してください。
+次に、Github上の `your-first-dApp` に ローカル環境に存在する`your-first-dApp` のファイルとディレクトリが反映されていることを確認してください。
 
 Vercel のアカウントを取得したら、下記を実行しましょう。
 
 1\. `Dashboard` へ進んで、`New Project` を選択してください。
 ![](https://i.imgur.com/ugQsnep.png)
 
-2\. `Import Git Repository` で自分のGithubアカウントを接続したら、`your-first-dapps` を選択し、`Import` してください。
+2\. `Import Git Repository` で自分のGithubアカウントを接続したら、`your-first-dApp` を選択し、`Import` してください。
 ![](https://i.imgur.com/HMXiFxc.png)
 
 3\. プロジェクトを作成します。Environment Variableに下記を追加します。
@@ -148,6 +148,7 @@ VercelはGithubと連動しているので、Githubが更新されるたびに�
 ![](https://i.imgur.com/UhEcZus.png)
 
 こちらが、今回のプロジェクトで作成されるWEBアプリのデモです。
+
 https://my-wave-portal2-nxs1j760t-yukis4san.vercel.app/
 
 これは MVP（=最小機能のついたプロダクト）です。
@@ -158,7 +159,7 @@ https://my-wave-portal2-nxs1j760t-yukis4san.vercel.app/
 🙉 githubに関するメモ
 --------------------------------
 
-**Githubにコントラクトのコードをアップロードする際は、秘密鍵を含むハードハット構成ファイルをリポジトリにアップロードしないよう注意しましょう**
+**Githubにコントラクト（ `my-wave-portal` ）のコードをアップロードする際は、秘密鍵を含むハードハット構成ファイルをリポジトリにアップロードしないよう注意しましょう**
 
 秘密鍵などのファイルを隠すために、ターミナルで `my-wave-portal` に移動して、下記を実行してください。
 
@@ -183,8 +184,8 @@ code .env
 そして、`.env` ファイルを下記のように更新します。
 
 ```
-PRIVATE_KEY = hardhad.config.js内にある秘密鍵（accounts）を貼り付ける
-STAGING_ALCHEMY_KEY = hardhad.config.js内にあるAlchemyのyURLを貼り付ける
+PRIVATE_KEY = hardhad.config.jsにある秘密鍵（accounts）を貼り付ける
+STAGING_ALCHEMY_KEY = hardhad.config.jsにあるAlchemyのyURLを貼り付ける
 PROD_ALCHEMY_KEY = メインネットにデプロイする際に使用するAlchemyのURLを貼り付ける（今は何も貼り付ける必要はありません）
 ```
 

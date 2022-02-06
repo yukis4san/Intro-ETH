@@ -231,7 +231,6 @@ WavePortal address: 0x489BdD5f9ad2D061F0bC648fd0A06e4D024A9a81
 例）出力されたコントラクトアドレスをコピー
 ![](https://i.imgur.com/sisMqBM.png)
 
-
 👀 Etherscanでトランザクションを確認する
 ------------------------
 コピーした `WavePortal address` アドレスを、[Etherscan](https://rinkeby.etherscan.io/) に貼り付けて、あなたのスマートコントラクトのトランザクション履歴を見てみましょう。

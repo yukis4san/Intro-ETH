@@ -160,7 +160,7 @@ const wave = async () => {
 > `provider` を介して、ユーザーはブロックチェーン上に存在するイーサリアムノードに接続することができます。
 > Metamask が提供するイーサリアムノードを使用して、デプロイされたコントラクトからデータを送受信するために上記の実装を行いました。
 >
-> これにより、Ethers JS で `provider` のインスタンスを新規作成しています。
+> `ethers` のライブラリにより `provider` のインスタンスを新規作成しています。
 
 2. `signer`
 > ```javascript
@@ -179,8 +179,9 @@ const wave = async () => {
 > // App.js
 > const wavePortalContract = new ethers.Contract(contractAddress, contractABI, signer);
 > ```
+> ここで、**コントラクトへの接続を行っています。**
 >
->コントラクトの新しいインスタンスを作成するには、以下3つの変数を`ethers.Contract`関数に渡す必要があります。
+>コントラクトの新しいインスタンスを作成するには、以下3つの変数を `ethers.Contract` 関数に渡す必要があります。
 > 1. コントラクトのデプロイ先のアドレス（ローカル、テストネット、またはメインネット）
 > 2. コントラクトのABI
 > 3. `provider`、もしくは `signer`
@@ -208,7 +209,7 @@ const wave = async () => {
 
 今回のレッスンでは実装する機能が多いので、追加する機能3つに対してテストを行います。
 
-`App.js` を更新したら、ターミナル上で `your-first-dapp` に移動し、`npm run start` を実行してください。
+`App.js` を更新したら、ターミナル上で `your-first-dApp` に移動し、`npm run start` を実行してください。
 
 ローカルサーバーを介して表示されているWEBアプリから右クリック → `Inspect` を選択し、`Console` の出力結果を確認してみましょう。
 
@@ -250,34 +251,34 @@ const [currentAccount, setCurrentAccount] = useState("");
 const contractAddress = "あなたの WavePortal address を貼り付けてください";
 ```
 
-`App.js`を更新したら、ローカルサーバーにホストされているWEBアプリから `Console` を確認してみましょう。
+`App.js` を更新したら、ローカルサーバーにホストされているWEBアプリから `Console` を確認してみましょう。
 
 `contractAddress` に関するエラーが消えていれば、成功です。
 ![](https://i.imgur.com/ezfvWg5.png)
 
-🛠 ABIファイルからコンテンツを取得する
+📂 ABI ファイルを取得する
 ---------------------------
 
 ABI (Application Binary Interface) はコントラクトの取り扱い説明書のようなものです。
 
-WEBアプリがコントラクトと通信するために必要な情報が、ABIファイルに含まれています。
+WEBアプリがコントラクトと通信するために必要な情報が、ABI ファイルに含まれています。
 
-コントラクト一つ一つにユニークなABIファイルが紐づいており、その中には下記の情報が含まれています。
+コントラクト一つ一つにユニークな ABI ファイルが紐づいており、その中には下記の情報が含まれています。
 1. そのコントラクトに使用されている関数の名前
 2. それぞれの関数にアクセスするために必要なパラメータとその型
 3. 関数の実行結果に対して返るデータ型の種類
 
-ABIファイルは、コントラクトがコンパイルされた時に生成され、`artifacts` ディレクトリに自動的に格納されます。
+ABI ファイルは、コントラクトがコンパイルされた時に生成され、`artifacts` ディレクトリに自動的に格納されます。
 
 ターミナルで `my-wave-portal` ディレクトリに移動し、`ls` を実行しましょう。
 
 `artifacts` ディレクトリの存在を確認してください。
 
-ABIファイルの中身は、`WavePortal.json` というファイルに格納されいます。
+ABI ファイルの中身は、`WavePortal.json` というファイルに格納されいます。
 
-下記を実行して、ABIファイルをコピーしましょう。
+下記を実行して、ABI ファイルをコピーしましょう。
 
-1. ターミナル上で `my-wave-portal にいることを確認する（もしくは移動する）。
+1. ターミナル上で `my-wave-portal` にいることを確認する（もしくは移動する）。
 2. ターミナル上で下記を実行する。
 > ```
 > code artifacts/contracts/WavePortal.sol/WavePortal.json
@@ -286,25 +287,26 @@ ABIファイルの中身は、`WavePortal.json` というファイルに格納�
 
 	※ VS Codeのファインダーを使って、直接 `WavePortal.json` を開くことも可能です。
 
-次に、下記を実行して、ABIファイルをWEBアプリから呼び出せるようにしましょう。
-1. ターミナル上で `my-wave-portal` にいることを確認する（もしくは移動する）。
-2. 下記を実行して、`your-first-dapp/src/` の中に `utils` ディレクトリを作成する。
+次に、下記を実行して、ABI ファイルをWEBアプリから呼び出せるようにしましょう。
+
+1. ターミナル上で `your-first-dApp` にいることを確認する（もしくは移動する）。
+2. 下記を実行して、`your-first-dApp/src/` の中に `utils` ディレクトリを作成する。
 > ```bash
-> mkdir your-first-dapp/src/utils
+> mkdir src/utils
 >```
 3. 下記を実行して、`utils` ディレクトリに `WavePortal.json` ファイルを作成する。
 >```bash
-> touch your-first-dapp/src/utils/WavePortal.json
+> touch src/utils/WavePortal.json
 >```
 4. 下記を実行して、`WavePortal.json` ファイルを VS Code で開く。
 >```bash
-> code your-first-dapp/src/utils/WavePortal.json
+> code your-first-dApp/src/utils/WavePortal.json
 >```
-5. **先ほどコピーした `WavePortal.json` の中身を新しく作成した`your-first-dapp/src/utils/WavePortal.json` の中に貼り付けてください。**
+5. **先ほどコピーした `my-wave-portal/artifacts/contracts/WavePortal.sol/WavePortal.json` の中身を新しく作成した `your-first-dApp/src/utils/WavePortal.json` の中に貼り付けてください。**
 
-すべてのABIコンテンツを含むファイルの準備ができたので、それを `App.js` ファイルにインポートしましょう。
+ABI ファイルの準備ができたので、`App.js` にインポートしましょう。
 
-下記のように`App.js`を更新します。
+下記のように `App.js` を更新します。
 
 ```javascript
 import React, { useEffect, useState } from "react";
@@ -446,17 +448,17 @@ export default App
 ```
 新しく実装されいる機能は下記の3つです。
 
-**1 \. ABIファイルを含む WavePortal.json ファイルをインポートする**
+**1 \. ABI ファイルを含む WavePortal.json ファイルをインポートする**
 ```javascript
 // App.js
 import abi from "./utils/WavePortal.json";
 ```
-**2 \. ABIの内容を参照する変数を作成**
+**2 \. ABI の内容を参照する変数を作成**
 ```javascript
 // App.js
 const contractABI = abi.abi;
 ```
-ABIの参照先を確認しましょう。`wave` 関数の中に実装されています。
+ABI の参照先を確認しましょう。`wave` 関数の中に実装されています。
 
 ```javascript
 // App.jss
@@ -480,7 +482,7 @@ const wave = async () => {
     }
   }
 ```
-ABIファイルを `App.js` に追加すると、フロントエンドで `Wave` ボタンがクリックされたとき、**ブロックチェーン上のコントラクトから正式にデータを読み取ることができます**。
+ABI ファイルを `App.js` に追加すると、フロントエンドで `Wave` ボタンがクリックされたとき、**ブロックチェーン上のコントラクトから正式にデータを読み取ることができます**。
 
 **3 \. データをブロックチェーンに書き込む**
 
@@ -526,13 +528,13 @@ const wave = async () => {
 🚀 テストを実行する
 -----------------------------
 
-ターミナル上で`your-first-dapp`に移動し、下記を実行しましょう。
+ターミナル上で `your-first-dApp` に移動し、下記を実行しましょう。
 ```
 npm run start
 ```
-ローカルサーバー上で表示されているWEBアプリで`Inspect`を実行し、以下を試してみましょう。
+ローカルサーバー上で表示されているWEBアプリで `Inspect` を実行し、以下を試してみましょう。
 
-1 \. `Wallet Connect`をボタンを押して、sWEBアプリにあなたの Metamask のウォレットアドレスを接続する。
+1 \. `Wallet Connect` をボタンを押して、sWEBアプリにあなたの Metamask のウォレットアドレスを接続する。
 
 2 \. `Wave at Me` ボタンを押して、実際にブロックチェーン上にあなたの「👋（wave）」が反映されているか確認する。
 

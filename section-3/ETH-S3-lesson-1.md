@@ -78,19 +78,26 @@ contract WavePortal {
 今回の実装は、`NewWave` のイベントが `emit` されるごとに、コントラクトに書き込まれたデータをWEBアプリのフロントエンドに反映させることを目的としています。
 
 下記のコードに注目してください。
+
 ```solidity
 // WavePortal.sol
 event NewWave(address indexed from, uint256 timestamp, string message);
 ```
-`event` は、コントラクトの継承可能なメンバです。
 
-下記のように、イベントが `emit` されると、渡された引数がトランザクションログに保存されます。
+ここでは、`NewWave` イベントが定義されています。引数として取る値は、下記になります。
+- ユーザーのアドレス（ `address` ）
+- ユーザーが `wave` してきた時刻（ `timestamp` ）
+- ユーザーのメッセージ（ `message` ）
+
+次に下記のコードを見ていきましょう。
 
 ```solidity
 // WavePortal.sol
 emit NewWave(msg.sender, block.timestamp, _message);
 ```
-これらのログはブロックチェーン上に保存され、コントラクトがブロックチェーン上に存在する限り、コントラクトのアドレスを使ってアクセスすることができます。
+
+コントラクトでイベントが `emit` されると、フロントエンド（ `App.js` ）でその情報を受け取ります。
+`NewWave` イベント が `emit` される際、フロントエンド（ `App.js` ）で使用する変数 `msg.sender`, `block.timestamp`, `_message` をフロントエンドに送信しています。
 
 次に、`App.js` の中にある `getAllWaves` 関数も `NewWave` のイベントを受け取れるように変更していきます。
 
@@ -104,7 +111,7 @@ const getAllWaves = async () => {
 		const provider = new ethers.providers.Web3Provider(ethereum);
 		const signer = provider.getSigner();
 		const wavePortalContract = new ethers.Contract(contractAddress, contractABI, signer);
-	    /* コントラクトからgetAllWavesメソッドを呼び出す */
+	  /* コントラクトからgetAllWavesメソッドを呼び出す */
 		const waves = await wavePortalContract.getAllWaves();
     /* UIに必要なのは、アドレス、タイムスタンプ、メッセージだけなので、以下のように設定 */
 		const wavesCleaned = waves.map(wave => {
@@ -321,7 +328,7 @@ We have 0 total waves!
 
 2. フロントエンドの契約アドレスを更新する（更新するファイル: `App.js` ）
 
-3. フロントエンドのABIファイルを更新する（更新するファイル: `your-first-dapps/src/utils/WavePortal.json` ）
+3. フロントエンドのABIファイルを更新する（更新するファイル: `your-first-dApp/src/utils/WavePortal.json` ）
 
 **コントラクトを更新するたび、これらの3つのステップを実行する必要があります。**
 
@@ -336,7 +343,7 @@ We have 0 total waves!
 
 それでは、復習も兼ねて、下記を実行していきましょう。
 
-1 \. ターミナル上で `my-wave-portal` に移動し、下記を実行し、コントラクトを再度デプロイする。
+**1 \. ターミナル上で `my-wave-portal` に移動し、下記を実行し、コントラクトを再度デプロイする。**
 ```
 npx hardhat run scripts/deploy.js --network rinkeby
 ```
@@ -348,23 +355,30 @@ Account balance:  333733007254181125
 WavePortal address:  0x8B1D31bFBf34dBF12c73034215752261e55b443c
 ```
 
-2 \. `App.js` の `contractAddress` を、ターミナルで取得した新しいコントラクトアドレスに変更します。
+**2 \. `App.js` の `contractAddress` を、ターミナルで取得した新しいコントラクトアドレスに変更します。**
 
-`WavePortal address` の後に出力された `0x..` の値を `App.js` の下記の部分に貼り付けましょう。
+下記のように、ターミナルに出力されたコントラクトアドレス（ `0x..` ）をコピーしましょう。
 
-```javascript
-const Address = "ここに新しいWavePortal addressを貼り付ける";
+```
+WavePortal address: 0x... ← あなたのコントラクトアドレスをコピー
 ```
 
-3 \. 以前と同じように `artifacts` からABIファイルを取得します。下記のステップを実行してください。
+コピーしたアドレスを `App.js` の `const contractAddress = "こちら"` に貼り付けましょう。
 
-1. `artifacts/contracts/WavePortal.sol/WavePortal.json` ファイルを開き、中身を全てコピーする。
+**3 \. 以前と同じように `artifacts` からABIファイルを取得します。下記のステップを実行してください。**
 
-2. `your-first-dapps/src/utils/WavePortal.json` を開く。
->
-3. ステップ1でコピーした`artifacts/contracts/WavePortal.sol/WavePortal.json` のABIファイルを `your-first-dapps/src/utils/WavePortal.json` の中身として更新してくださいs。
+1. ターミナル上で `my-wave-portal` にいることを確認する（もしくは移動する）。
+2. ターミナル上で下記を実行する。
+> ```
+> code artifacts/contracts/WavePortal.sol/WavePortal.json
+> ```
+3. VS Codeで `WavePortal.json` ファイルが開かれるので、中身を全てコピーしましょう。
 
-**繰り返しますが、コントラクトを更新するたびにこれを行う必要があります。**
+	※ VS Codeのファインダーを使って、直接 `WavePortal.json` を開くことも可能です。
+
+4. コピーした `my-wave-portal/artifacts/contracts/WavePortal.sol/WavePortal.json` の中身を新しく作成した `your-first-dApp/src/utils/WavePortal.json` の中に貼り付けてください。
+
+**繰り返しますが、コントラクトを更新するたびにこの作業を行う必要があります。**
 
 🔌 WEBアプリにコントラクトの変更を反映させる
 ----------------------------------
@@ -704,7 +718,7 @@ const [messageValue, setMessageValue] = useState("")
 ローカルサーバーでWEBアプリをホストして、フロントエンドを確認しながら、上記のコードがどのようにフロントエンドに反映されているのか、考察してみてください。
 
 **⭐️: ローカルサーバーの立ち上げ**
-  - ターミナル上で` your-first-dapps` に移動
+  - ターミナル上で` your-first-dApp` に移動
   - `npm run start` を実行
   - `localhost` でWEBアプリを参照
 
