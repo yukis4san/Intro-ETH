@@ -287,7 +287,7 @@ Contract balance: 0.0999
 
 それでは、下記のように `WavePortal.sol` を更新しましょう。
 
-```solidity
+```javascript
 // SPDX-License-Identifier: UNLICENSED
 
 pragma solidity ^0.8.0;

@@ -28,10 +28,10 @@ VS Code をターミナルから起動する方法は[こちら](https://maku.bl
 
 それでは、これから `WavePortal.sol` の中身の作成していきます。`WavePortal.sol` を VS Code で開き、下記を入力します。
 
-```solidity
+```javascript
 // SPDX-License-Identifier: UNLICENSED
 
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.4;
 
 import "hardhat/console.sol";
 
@@ -44,7 +44,7 @@ contract WavePortal {
 
 コーディングのサポートツールとして、VS Code 上で Solidity の拡張機能をダウンロードすることをおすすめします。ダウンロードは [こちら](https://marketplace.visualstudio.com/items?itemName=JuanBlanco.solidity) から。
 
-```solidity
+```javascript
 // WavePortal.sol
 // SPDX-License-Identifier: UNLICENSED
 ```
@@ -52,22 +52,22 @@ contract WavePortal {
 
 詳細については、[ここ](https://www.skyarch.net/blog/?p=15940)を参照してみてください。
 
-```solidity
+```javascript
 // WavePortal.sol
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.4;
 ```
-これは、コントラクトで使用する Solidity コンパイラのバージョンです。上記の場合「このコントラクトを実行するときは、Solidity コンパイラのバージョン0.8.0のみを使用し、それ以下のものは使用しません。」という意味です。コンパイラのバージョンが `hardhat.config.js` で同じであることを確認してください。
+これは、コントラクトで使用する Solidity コンパイラのバージョンです。上記の場合「このコントラクトを実行するときは、Solidity コンパイラのバージョン0.8.4のみを使用し、それ以下のものは使用しません。」という意味です。コンパイラのバージョンが `hardhat.config.js` で同じであることを確認してください。
 
-もし、`hardhat.config.js` の中に記載されている Solidity のバージョンが `0.8.0` でなかった場合は、`WavePortal.sol` の中身を `hardhat.config.js` に記載されているバージョンに変更しましょう。
+もし、`hardhat.config.js` の中に記載されている Solidity のバージョンが `0.8.4` でなかった場合は、`WavePortal.sol` の中身を `hardhat.config.js` に記載されているバージョンに変更しましょう。
 
-```solidity
+```javascript
 // WavePortal.sol
 import "hardhat/console.sol";
 ```
 
 コントラクトを実行する際、コンソールログをターミナルに出力するために Hardhat の`console.sol` のファイルをインポートしています。これは、今後スマートコントラクトのデバッグが発生した場合に、とても役立つツールです。
 
-```solidity
+```javascript
 // WavePortal.sol
 contract WavePortal {
     constructor() {

@@ -15,10 +15,10 @@
 
 それでは、「👋（wave）」を保存するために、`WavePortal.sol` を更新していきましょう。
 
-```solidity
+```javascript
 // SPDX-License-Identifier: UNLICENSED
 
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.4;
 
 import "hardhat/console.sol";
 
@@ -43,7 +43,7 @@ contract WavePortal {
 ```
 
 新しく追加されたコードの理解を深めましょう。
-```solidity
+```javascript
 // WavePortal.sol
 uint256 totalWaves;
 ```
@@ -52,9 +52,9 @@ uint256 totalWaves;
 
 - [unit256](https://www.iuec.co.jp/blockchain/uint256.html) は、非常に大きな数を扱うことができる「独自定義のクラス」を意味します。
 
-🎁 Solidity のアクセス修飾について
+🎁 Solidity のアクセス修飾子について
 ------------------
-```solidity
+```javascript
 // WavePortal.sol
 function wave() public {
     totalWaves += 1;
@@ -93,7 +93,7 @@ Solidityには、4つのアクセス修飾子が存在します。
 
 🔍 `msg.sender` について
 ------------------
-```solidity
+```javascript
 // WavePortal.sol
 function wave() public {
     totalWaves += 1;
@@ -108,7 +108,7 @@ function wave() public {
 - スマートコントラクトに含まれる関数を呼び出すには、ユーザーは有効なウォレットを接続する必要があります。
 - `msg.sender` では、誰が関数を呼び出したかを正確に把握し、ユーザー認証を行っています。
 
-🖋 Solidityの関数修飾子
+🖋 Solidityの関数修飾子について
 ------------------
 
 Solidity には、関数（function）に対してのみ使用される修飾子（＝関数修飾子）が存在します。
@@ -137,7 +137,7 @@ Solidity 開発では関数修飾子を意識しておかないとデータを�
 
 `WavePortal.sol` に追加された下記の関数を見ていきましょう。
 
-```solidity
+```javascript
 // WavePortal.sol
 function wave() public {
     totalWaves += 1;
@@ -153,7 +153,7 @@ function wave() public {
 
 それでは、下記のコードも見ていきましょう。
 
-```solidity
+```javascript
 // WavePortal.sol
 function getTotalWaves() public view returns (uint256) {
     console.log("We have %d total waves!", totalWaves);
